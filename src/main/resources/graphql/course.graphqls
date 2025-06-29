@@ -1,0 +1,27 @@
+# Types
+type Course{
+    id: ID!
+    name: String!
+}
+
+type CoursePage{
+    content: [Course!]!
+    totalElements: Int!
+    totalPages: Int!
+    size: Int!
+    number: Int!
+}
+
+#Quries
+extend type Query {
+    courses(id: ID, page: Int = 0, size: Int = 10): CoursePage
+}
+
+#Mutations
+input CourseInput {
+    name: String!
+}
+extend type Mutation{
+    createCourse(input: CourseInput!): Course
+    deleteCourse(id:ID!): Boolean
+}

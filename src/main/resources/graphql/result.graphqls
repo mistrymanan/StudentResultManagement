@@ -1,0 +1,41 @@
+#Enums
+enum Score {
+    A
+    B
+    C
+    D
+    E
+    F
+}
+#Types
+type Result {
+    id: ID!
+    course: Course!
+    student: Student!
+    score: Score!
+}
+
+type ResultPage{
+    content: [Result!]!
+    totalElements: Int!
+    totalPages: Int!
+    size: Int!
+    number: Int!
+}
+
+#Query
+extend type Query {
+    results(id: ID,courseId: ID, page: Int = 0, size: Int = 10): ResultPage
+}
+
+#Mutation
+input resultInput {
+    courseId: ID!
+    studentId: ID!
+    score: Score!
+}
+
+extend type Mutation {
+    addResult(input: resultInput!): Result
+    deleteResult(id: ID!): Boolean
+}

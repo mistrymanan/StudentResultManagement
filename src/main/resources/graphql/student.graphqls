@@ -1,0 +1,37 @@
+#Scalar types
+scalar Date
+
+#Types
+type Student{
+    id: ID!
+    firstName: String!
+    familyName: String!
+    email: String!
+    dateOfBirth: Date!
+}
+
+type StudentPage{
+    content: [Student!]!
+    totalElements: Int!
+    totalPages: Int!
+    size: Int!
+    number: Int!
+}
+
+#Query
+type Query {
+    students(id: ID, page: Int = 0, size: Int = 10): StudentPage
+}
+
+#Mutation
+input studentInput {
+    firstName: String!
+    familyName: String!
+    email: String!
+    dateOfBirth: Date!
+}
+
+type Mutation {
+    addStudent(input: studentInput!): Student
+    deleteStudent(id:ID!): Boolean
+}
