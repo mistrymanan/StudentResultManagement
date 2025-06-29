@@ -1,0 +1,27 @@
+services:
+      mysql:
+            image: mysql:8.0
+            container_name: mysql_db
+            environment:
+                  - MYSQL_DATABASE=student_result_management
+                  - MYSQL_ROOT_PASSWORD=test@123
+            ports:
+                  - "3307:3306"
+            volumes:
+                  - mysql_data:/var/lib/mysql
+
+      app:
+            build: .
+            container_name: student_result_app
+            depends_on:
+                  - mysql
+            ports:
+                  - "8080:8080"
+            environment:
+                  - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/student_result_management?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+                  - SPRING_DATASOURCE_USERNAME=root
+                  - SPRING_DATASOURCE_PASSWORD=sherlock
+            restart: always
+
+volumes:
+      mysql_data:
