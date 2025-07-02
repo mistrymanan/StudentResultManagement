@@ -64,7 +64,7 @@ public class ResultService {
         if ( !resultRepository.existsByCourseIdAndStudentIdAndDeletedFalse(
             addResult.getCourseId(), addResult.getStudentId()) ) {
             Student student = studentRepository
-                    .findById(addResult.getStudentId())
+                    .findByIdAndDeletedFalse(addResult.getStudentId())
                     .orElseThrow(
                             () -> new NotFoundException("Student Not Found with id: " + addResult.getStudentId()));
             Course course = courseRepository
