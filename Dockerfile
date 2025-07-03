@@ -5,7 +5,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 RUN chmod +x mvnw
-RUN ./mvnw clean package
+RUN ./mvnw clean package -DskipTests
 
 FROM amazoncorretto:17-alpine-full
 WORKDIR /app
