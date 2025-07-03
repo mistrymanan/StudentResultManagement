@@ -17,7 +17,7 @@ The below assumptions are made while developing the application:
 - The requirements include only create, delete, and list operations for Student, Course, and Results entities. Update operations are not required as they are not mentioned in the provided documentation.
 
 ## ER Diagram
-![ER Diagram](er_diagram.png)
+![ER Diagram](ER_Diagram.png)
 
 ## GraphQL Endpoints
 1. **Query Operations**:
@@ -43,6 +43,6 @@ git clone
 ```
 2. Start application using
 ```
-docker-componse up
+docker-componse up --build
 ```
 The App would be up and running on default 8080 port, the port can be changed from application.properties file, moreover, container for mysql instance is also configured in docker-compose.yaml if needed port can be changed, but make sure to update environment variable.
